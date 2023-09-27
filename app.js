@@ -1,10 +1,11 @@
 const http = require('http');
+const express = require('express');
 
-const routes = require('./routes');
+//utworzenie aplikacji express
+//czyli pakiet express emituje funkcję, którą możemy
+//przekazać do funkcji crateServer
+const app = express();
 
-// użycie importu dla alternatywnego ekspory
-const server = http.createServer(routes.handler);
-
-// const server = http.createServer(routes);
+const server = http.createServer(app);
 
 server.listen(3000);
