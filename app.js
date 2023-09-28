@@ -6,13 +6,13 @@ const shopRouter = require('./routes/shop');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(adminRouter);
+//można dodać kawałek ścieżki jaki będzie wymagany dla wszystkich w routerze
+// np. /admin/add-product
+app.use('/admin', adminRouter);
 app.use(shopRouter);
 
-//jeżeli żadna ze ścieżek nie pasuje to dojdzie do tego middlware i zwróc page not found
 app.use((req, res, next) => {
-    //ponadto ustaw status odpowiedzi na 404 (not found) - w node jest statusCode
     res.status(404).send('<h1>Page not found</h1>');
-})
+});
 
 app.listen(3000);
